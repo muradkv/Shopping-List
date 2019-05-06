@@ -16,6 +16,8 @@ class ShoppingTableViewController: UITableViewController {
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addValue))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteItems))
     }
 
     // MARK: - Table view data source
@@ -53,6 +55,11 @@ class ShoppingTableViewController: UITableViewController {
         
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    @objc func deleteItems() {
+        shoppingList.removeAll()
+        tableView.reloadData()
     }
 
 }
